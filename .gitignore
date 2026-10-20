@@ -1,0 +1,8 @@
+.DS_Store
+_build/shots/
+_build/research/
+_build/*.mjs
+!_build/preview.mjs
+!_build/local-server.mjs
+node_modules/
+!_build/build-demo.mjs
