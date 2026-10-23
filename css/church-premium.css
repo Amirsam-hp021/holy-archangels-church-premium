@@ -542,10 +542,6 @@ html.chp-js .chp-img-wipe.chp-in img { clip-path: inset(0 0 0 0); transform: sca
 .chp-img-frame { position: relative; }
 .chp-img-frame img { box-shadow: var(--chp-shadow-lg); }
 
-.elementor-widget-premium-media-wheel {
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
-}
 .elementor-widget-premium-media-wheel img { border-radius: 14px; transition: transform .8s var(--chp-ease), filter .6s; }
 .elementor-widget-premium-media-wheel img:hover { transform: scale(1.03); filter: saturate(1.1); }
 
