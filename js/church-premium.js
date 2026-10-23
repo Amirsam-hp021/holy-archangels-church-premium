@@ -282,17 +282,17 @@
     w.addEventListener('resize', measure);
   }
 
-  /* ---------- navigation: gliding ink/pill, give-button glow, burger ---------- */
+  /* ---------- navigation: gliding gold line, give-button glow, burger ---------- */
   function nav() {
     $$('#masthead .hfe-nav-menu__layout-horizontal > .hfe-nav-menu').forEach(function (ul) {
       // HFE styles the LAST <li> as its button, so the ink lives on the <nav>, not inside the <ul>
       var box = ul.parentElement;
       var items = $$(':scope > .menu-item', ul).slice(0, -1);
       if (!items.length || !box) return;
-      var ink = d.createElement('span'), pill = d.createElement('span');
-      ink.className = 'chp-ink'; pill.className = 'chp-pill';
-      ink.setAttribute('aria-hidden', 'true'); pill.setAttribute('aria-hidden', 'true');
-      box.appendChild(pill); box.appendChild(ink);
+      var ink = d.createElement('span');
+      ink.className = 'chp-ink';
+      ink.setAttribute('aria-hidden', 'true');
+      box.appendChild(ink);
       var current = items.filter(function (li) { return /current-menu-(item|ancestor)|current_page_item/.test(li.className); })[0];
 
       function place(li) {
@@ -304,10 +304,6 @@
         ink.style.setProperty('--w', inkW + 'px');
         ink.style.setProperty('--x', (ar.left - ur.left + (ar.width - inkW) / 2) + 'px');
         ink.style.setProperty('--b', Math.max(2, ur.bottom - ar.bottom + 4) + 'px');
-        pill.style.setProperty('--w', ar.width + 'px');
-        pill.style.setProperty('--x', (ar.left - ur.left) + 'px');
-        pill.style.setProperty('--t', (ar.top - ur.top + ar.height * .12) + 'px');
-        pill.style.setProperty('--h', (ar.height * .76) + 'px');
       }
       function rest() {
         box.classList.remove('chp-nav-hover');
@@ -323,6 +319,7 @@
         li.addEventListener('focusin', function () { place(li); box.classList.add('chp-nav-on', 'chp-nav-hover'); });
       });
       ul.addEventListener('mouseleave', rest);
+      if (ul.lastElementChild) ul.lastElementChild.addEventListener('mouseenter', rest);   // the button doesn't take the line
       ul.addEventListener('focusout', function (e) { if (!ul.contains(e.relatedTarget)) rest(); });
       // place under the current page once the load-in cascade has settled
       box.classList.add('chp-nav-jump');

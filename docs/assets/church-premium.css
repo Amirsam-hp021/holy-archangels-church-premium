@@ -93,18 +93,16 @@ html, body { overflow-x: clip; }
 }
 .chp-scrolled #masthead .elementor-element-6a29888 img { transform: scale(.84); }
 .chp-scrolled #masthead .elementor-element-d8cf65d img { transform: scale(.78); }
-#masthead .elementor-element-6a29888 img:hover { filter: drop-shadow(0 6px 14px rgba(110, 76, 140, .35)); }
 
-/* ---- navigation: sliding gold ink + soft pill that follows the hovered item ---- */
+/* ---- navigation: sliding gold line + diamond that follows the hovered item ---- */
 #masthead nav.hfe-nav-menu__layout-horizontal { position: relative; }
 #masthead .hfe-nav-menu a.hfe-menu-item { position: relative; z-index: 1; transition: color .35s, transform .35s var(--chp-ease) !important; }
-#masthead .hfe-nav-menu__layout-horizontal > .hfe-nav-menu > .menu-item:not(:last-child):hover a.hfe-menu-item { transform: translateY(-1px); }
 #masthead .hfe-nav-menu .menu-item.current-menu-item a.hfe-menu-item,
 #masthead .hfe-nav-menu .menu-item.current-menu-ancestor > .hfe-has-submenu-container a.hfe-menu-item,
 #masthead .hfe-nav-menu .menu-item:hover > a.hfe-menu-item,
 #masthead .hfe-nav-menu .menu-item:hover > .hfe-has-submenu-container a.hfe-menu-item { color: var(--chp-purple) !important; }
 
-.chp-ink, .chp-pill {
+.chp-ink {
   position: absolute;
   left: 0;
   pointer-events: none;
@@ -132,17 +130,9 @@ html, body { overflow-x: clip; }
   transform: rotate(45deg);
   box-shadow: 0 0 10px rgba(200, 161, 78, .8);
 }
-.chp-pill {
-  top: var(--t, 0);
-  height: var(--h, 40px);
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(125, 88, 160, .09), rgba(200, 161, 78, .10));
-  z-index: 0;
-}
 .chp-nav-on .chp-ink { opacity: 1; }
-.chp-nav-hover .chp-pill { opacity: 1; }
-.chp-nav-jump .chp-ink, .chp-nav-jump .chp-pill { transition: opacity .35s; }
-@media (max-width: 1024px) { .chp-ink, .chp-pill { display: none !important; } }
+.chp-nav-jump .chp-ink { transition: opacity .35s; }
+@media (max-width: 1024px) { .chp-ink { display: none !important; } }
 
 /* dropdown arrows flip */
 #masthead .hfe-nav-menu__layout-horizontal .hfe-menu-toggle .fa,
@@ -166,14 +156,6 @@ html.chp-js #masthead .elementor-element-f48d669 .elementor-social-icon { animat
 html.chp-js #masthead .elementor-element-f48d669 .elementor-icon-list-item:nth-child(2) { animation-delay: .08s; }
 html.chp-js #masthead .elementor-element-f48d669 .elementor-icon-list-item:nth-child(3) { animation-delay: .16s; }
 html.chp-js #masthead .elementor-element-f48d669 .elementor-social-icon { animation-delay: .24s; }
-
-/* logo: gentle halo + tilt on hover */
-#masthead .elementor-element-6a29888 a,
-#masthead .elementor-element-6a29888 img { display: inline-block; }
-@media (hover: hover) {
-  #masthead .elementor-element-6a29888 img:hover { transform: rotate(-4deg) scale(1.04); }
-  .chp-scrolled #masthead .elementor-element-6a29888 img:hover { transform: rotate(-4deg) scale(.88); }
-}
 
 /* mobile: hamburger morphs into an X, menu items cascade in */
 #masthead .hfe-nav-menu__toggle.chp-has-burger .hfe-nav-menu-icon { display: none !important; }
@@ -238,7 +220,10 @@ html.chp-js #masthead .elementor-element-f48d669 .elementor-social-icon { animat
 #masthead .hfe-nav-menu__layout-horizontal .sub-menu > li:nth-child(5) { animation-delay: .16s !important; }
 #masthead .hfe-nav-menu__layout-horizontal .sub-menu > li:nth-child(n+6) { animation-delay: .20s !important; }
 
-/* "Ways to Give" — the last menu item */
+/* "Ways to Give" — the last menu item.
+   HFE paints its hover fill on ::after using Elementor's default accent (green #61CE70) — neutralise it. */
+#masthead .hfe-nav-menu .menu-item.hfe-button-wrapper > a.hfe-menu-item::after,
+#masthead .hfe-nav-menu .menu-item.hfe-button-wrapper > a.hfe-menu-item:hover::after { background-color: transparent !important; }
 #masthead .hfe-nav-menu__layout-horizontal > .hfe-nav-menu > .menu-item.hfe-button-wrapper > a.hfe-menu-item {
   border-radius: 999px !important;
   background: linear-gradient(135deg, #7D58A0, var(--chp-purple-600)) !important;
@@ -249,7 +234,10 @@ html.chp-js #masthead .elementor-element-f48d669 .elementor-social-icon { animat
   isolation: isolate;
   transition: transform .35s var(--chp-ease), box-shadow .35s;
 }
-#masthead .hfe-nav-menu__layout-horizontal > .hfe-nav-menu > .menu-item.hfe-button-wrapper > a.hfe-menu-item:hover {
+#masthead .hfe-nav-menu__layout-horizontal > .hfe-nav-menu > .menu-item.hfe-button-wrapper > a.hfe-menu-item:hover,
+#masthead .hfe-nav-menu__layout-horizontal > .hfe-nav-menu > .menu-item.hfe-button-wrapper > a.hfe-menu-item:focus-visible {
+  background: linear-gradient(135deg, var(--chp-purple-600), #3B2752) !important;
+  color: #fff !important;
   transform: translateY(-2px);
   box-shadow: 0 16px 30px -12px rgba(90, 61, 117, .9);
 }
